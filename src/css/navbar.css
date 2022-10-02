@@ -1,0 +1,17 @@
+.navbar-container{
+  border-bottom: 1px solid rgba(53,92,125,0.2);
+  /* margin-left: 8px !important; */
+  margin-right: 30px !important;
+}
+
+.navbar-logo{
+  height: 60px;
+}
+
+.pages-container{
+  width: fit-content !important;
+}
+
+/* .search-container{
+  width: 25ch;
+} */

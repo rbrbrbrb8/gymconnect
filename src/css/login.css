@@ -1,0 +1,54 @@
+
+  /* @import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+
+  html {
+    height: 100%;
+    
+  }
+
+  body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Oswald', sans-serif; 
+  } */
+
+  #root {
+    height: 100%;
+  }
+
+  .login-page-container {
+    height: 100%;
+  }
+
+  .login-page-img {
+    max-width: 100%;
+  }
+
+  .side-decor {
+    background-color: #5d90ba;
+    color: white;
+    height: 100%;
+  }
+/* 
+  .login-form-container{
+  } */
+
+  .login-form{
+    height: 100%;
+  }
+
+  .side-decor-img{
+    height: 400px;
+  }
+
+  .side-decor-container{
+    height: 100%;
+    padding-bottom: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 100px;
+  }
+
+  .test{
+   margin-top: 46%;
+  }
