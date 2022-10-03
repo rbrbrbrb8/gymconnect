@@ -1,5 +1,4 @@
-import React from 'react';
-import Typography from '@mui/material/Typography';
+import React, { useState } from 'react';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -7,6 +6,9 @@ import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import '../../css/navbar.css';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import { useHistory, useLocation } from 'react-router-dom';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -58,9 +60,33 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 function Navbar() {
   //display={{ 'xs': 'none', 'sm': 'block' }}
+  const history = useHistory();
+  const location = useLocation();
+  const currentPage = location.pathname;
+  const routeIndexes = {
+    '/home':0,
+    '/chats':1,
+    '/myprofile':2,
+    '/search':false
+  }
+  const routeNames= ['/home','/chats','/myprofile']
+  const [tabValue, setTabValue] = useState(routeIndexes[currentPage]);
+  const handleTabChange = (event, routeIndex) => {
+    setTabValue(routeIndex);
+    history.push(routeNames[routeIndex]);
+  };
+
+  const disconnect= () => {
+    setTabValue(false);
+  }
+
+  const commenceSearch = e => {
+    if(e.key === 'Enter') console.log('siuuuuu');
+  }
+
   return (
-    <Grid container direction='row' justifyContent='center' alignItems='center' className='navbar-container'>
-      <Grid item container sm={5} direction='row' alignItems='center'>
+    <Grid wrap='nowrap' columns={20} container direction='row' justifyContent='center' alignItems='center' className='navbar-container' >
+      <Grid item container sm={7} direction='row' alignItems='center'>
         <Box component={Grid} item>
           <img src='./images/logo_ver13.png' className='navbar-logo'></img>
         </Box>
@@ -73,25 +99,22 @@ function Navbar() {
               placeholder="Search people…"
               inputProps={{ 'aria-label': 'search' }}
               className='test'
+              onKeyDown={commenceSearch}
             />
           </Search>
         </Box>
       </Grid>
-      <Grid item container direction='row' sm={2} justifyContent='center'>
-        <Box component={Grid} item container spacing={2} direction='row' className='pages-container' >
-          <Box component={Grid} item>
-            <Typography color='textPrimary'>Home</Typography>
-          </Box>
-          <Box component={Grid} item>
-            <Typography color='textPrimary'>Chats</Typography>
-          </Box>
-          <Box component={Grid} item>
-            <Typography color='textPrimary'>My Profile</Typography>
-          </Box>
+      <Grid item container direction='row' sm={6} justifyContent='center' alignItems='center' className='routes-container'>
+        <Box sx={{ width: '100%' }}>
+          <Tabs value={tabValue} onChange={handleTabChange} sx={{height:'65px'}} centered>
+            <Tab label="Home" sx={{height:'65px'}}/>
+            <Tab label="Chats" sx={{height:'65px'}}/>
+            <Tab label="My Profile" sx={{height:'65px'}}/>
+          </Tabs>
         </Box>
       </Grid>
-      <Grid item container sm={5} direction='row' justifyContent='flex-end'>
-        <Button variant='contained'>Disconnect</Button>
+      <Grid item container sm={7} direction='row' justifyContent='flex-end'>
+        <Button variant='contained' onClick={disconnect}>Disconnect</Button>
       </Grid>
     </Grid>
   );

@@ -3,13 +3,27 @@ import Navbar from '../components/main/Navbar';
 import ThemeProvider from '@mui/material/styles/ThemeProvider';
 import theme from '../themes/mainTheme';
 import '../css/shared.css';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <div>
         <Navbar></Navbar>
-        we in boyyyyyyyyyy
+        <Switch>
+          <Route exact path='/'>
+            <Redirect to='/home'/>
+          </Route>
+          <Route path='/home'>
+          <div>home siuuuuuuuu</div>
+          </Route>
+          <Route path='/chats'>
+            <div>chats siuuuuuuuu</div>
+          </Route>
+          <Route path='/myprofile'>
+            <div>myprofile siuuuuuuuu</div>
+          </Route>
+        </Switch>
       </div>
     </ThemeProvider>
   );
