@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -62,7 +62,12 @@ function Navbar() {
   //display={{ 'xs': 'none', 'sm': 'block' }}
   const history = useHistory();
   const location = useLocation();
-  const currentPage = location.pathname;
+  const [tabValue, setTabValue] = useState(false);
+  useEffect(() => {
+    const currentPage = location.pathname;
+    setTabValue(routeIndexes[currentPage])
+  },[location])
+  
   const routeIndexes = {
     '/home':0,
     '/chats':1,
@@ -70,9 +75,9 @@ function Navbar() {
     '/search':false
   }
   const routeNames= ['/home','/chats','/myprofile']
-  const [tabValue, setTabValue] = useState(routeIndexes[currentPage]);
+  
   const handleTabChange = (event, routeIndex) => {
-    setTabValue(routeIndex);
+    // setTabValue(routeIndex);
     history.push(routeNames[routeIndex]);
   };
 
