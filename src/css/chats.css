@@ -1,0 +1,8 @@
+.chat-screen{
+  background-color: #f5f7f8;
+  height: 100%;
+}
+
+.chats-container{
+  height: calc(100% - 80px);
+}

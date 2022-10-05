@@ -9,7 +9,7 @@ import Chats from '../components/main/chats/Chats';
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <div>
+      <div className='app-container'>
         <Navbar></Navbar>
         <Switch>
           <Route exact path='/'>
