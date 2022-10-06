@@ -10,7 +10,7 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 function ChatScreenBar() {
 
   return (
-    <div>
+    <div className='chat-screen-bar-container'>
       <AppBar position='sticky'>
         <Toolbar>
           <ListItem>
@@ -21,7 +21,6 @@ function ChatScreenBar() {
           </ListItem>
         </Toolbar>
       </AppBar>
-      
     </div>
   );
 }

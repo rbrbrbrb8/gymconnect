@@ -31,14 +31,16 @@ function ChatScreenTypeBar() {
   }));
 
   return (
-    <div>
+    <div className='chat-screen-type-bar-container'>
       <AppBar position='sticky'>
         <Toolbar>
           <Box sx={{ flexGrow: 1 }}>
-            <TypeMessage>
+            <TypeMessage sx={{marginTop:'8px',marginBottom:'8px'}}>
               <StyledInputBase
                 placeholder="Enter message"
                 inputProps={{ 'aria-label': 'enter message' }}
+                sx={{ width: '100%',paddingBottom:0,paddingTop:0 }}
+                multiline={true}
               />
             </TypeMessage>
           </Box>
@@ -53,7 +55,6 @@ function ChatScreenTypeBar() {
           </Box>
         </Toolbar>
       </AppBar>
-
     </div>
   );
 }

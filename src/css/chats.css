@@ -1,8 +1,32 @@
-.chat-screen{
+.chat-screen {
   background-color: #f5f7f8;
   height: 100%;
+  position: relative;
 }
 
-.chats-container{
+.chats-container {
   height: calc(100% - 80px);
+}
+
+.chat-screen-main-container {
+  height: 100%;
+  display: flex;
+}
+
+.chat-screen-bar-container {
+  position: absolute;
+  width: 100%;
+}
+
+.chat-screen-type-bar-container {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.daily-messages-container {
+  flex: 1;
+  padding-top: 72px;
+  padding-bottom: 64px;
+  overflow: scroll;
 }
