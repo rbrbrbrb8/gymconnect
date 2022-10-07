@@ -28,5 +28,12 @@
   flex: 1;
   padding-top: 72px;
   padding-bottom: 64px;
-  overflow: scroll;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.daily-messages-content{
+  flex: 1 1 auto;
+  overflow-y: auto;
+  height: 0px;
 }
