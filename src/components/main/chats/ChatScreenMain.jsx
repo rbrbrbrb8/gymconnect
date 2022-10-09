@@ -9,7 +9,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 
 const ScrollBottom = ({ scrollToBottom, scrollRef, children }) => {
 
-  const trigger = useScrollTrigger({ target: scrollRef })
+  const trigger = useScrollTrigger({ target: scrollRef,threshold:0 })
 
 
   return (
@@ -66,22 +66,22 @@ function ChatScreenMain() {
           <DailyMessages date={'20.12.2022'} />
           <DailyMessages date={'20.12.2022'} />
           <DailyMessages date={'20.12.2022'} />
+          <DailyMessages date={'16.12.2022'} />
+          <DailyMessages date={'17.12.2022'} />
+          <DailyMessages date={'18.12.2022'} />
+          <DailyMessages date={'19.12.2022'} />
           <DailyMessages date={'20.12.2022'} />
-          <DailyMessages date={'20.12.2022'} />
-          <DailyMessages date={'20.12.2022'} />
-          <DailyMessages date={'20.12.2022'} />
-          <DailyMessages date={'20.12.2022'} />
-          <DailyMessages date={'20.12.2022'} />
-          <DailyMessages date={'20.12.2022'} />
-          <DailyMessages date={'20.12.2022'} />
-          <DailyMessages date={'20.12.2022'} />
-          <DailyMessages date={'20.12.2022'} />
-          <DailyMessages date={'20.12.2022'} />
-          <DailyMessages date={'20.12.2022'} />
-          <DailyMessages date={'20.12.2022'} />
-          <DailyMessages date={'20.12.2022'} />
-          <DailyMessages date={'20.12.2022'} />
-          <DailyMessages date={'20.12.2022'} />
+          <DailyMessages date={'21.12.2022'} />
+          <DailyMessages date={'22.12.2022'} />
+          <DailyMessages date={'23.12.2022'} />
+          <DailyMessages date={'24.12.2022'} />
+          <DailyMessages date={'25.12.2022'} />
+          <DailyMessages date={'26.12.2022'} />
+          <DailyMessages date={'27.12.2022'} />
+          <DailyMessages date={'28.12.2022'} />
+          <DailyMessages date={'29.12.2022'} />
+          <DailyMessages date={'30.12.2022'} />
+          <DailyMessages date={'31.12.2022'} />
           <DailyMessages date={'01.01.2023'} />
           <ScrollBottom scrollToBottom={scrollToBottom} scrollRef={scroller}>
             <Fab size="small" aria-label="scroll back to Bottom">

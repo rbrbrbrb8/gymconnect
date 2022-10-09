@@ -14,6 +14,7 @@ dbHandler.init();
 
 
 const app = express();
+app.use(express.json())
 app.use(session({
   secret: 'siuuuuuuu',
   cookie: { maxAge: 1000 * 60 * 60 * 24 },

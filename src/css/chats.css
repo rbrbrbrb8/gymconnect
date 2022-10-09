@@ -32,8 +32,35 @@
   flex-direction: column-reverse;
 }
 
-.daily-messages-content{
+.daily-messages-content {
   flex: 1 1 auto;
   overflow-y: auto;
   height: 0px;
+}
+
+.message {
+  width: fit-content;
+  padding-left: 10px;
+  padding-right: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  max-width: 530px;
+  overflow-wrap: break-word;
+}
+
+.messages-date {
+  margin-bottom: 12px !important;
+
+}
+.all-messages{
+  margin-bottom: 12px !important;
+}
+
+.message-me {
+  background-color: #355C7D !important;
+  color: white !important;
+}
+
+.message-margin-anchor{
+  margin-bottom: 2px;
 }
