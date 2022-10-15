@@ -27,11 +27,11 @@ dbHandler.init = () => {
       console.log(change);
       if(change.operationType === 'insert'){
         const messageDetails = change.fullDocument;
+        delete messageDetails['__v'];
+        delete messageDetails['_id'];
         pusher.trigger('messages','inserted',{
-          room:messageDetails.room,
-          sender:messageDetails.sender,
-          content:messageDetails.content
-        })
+          ...messageDetails
+        });
       }
     })
   });

@@ -11,6 +11,7 @@ const logger = require('./handlers/logger/loggerHandler');
 const dbHandler = require('./handlers/db/dbHandler');
 const MongoStore = require('connect-mongo');
 const chatsRouter = require('./routes/chats');
+const userRouter = require('./routes/user');
 
 dbHandler.init();
 
@@ -61,6 +62,8 @@ app.get('/login', (req, res) => {
 })
 
 app.use('/chats',chatsRouter);
+app.use('/user',userRouter);
+
 
 app.use(isLoggedIn, function (req, res) {
   const pathToSend = path.resolve(__dirname, 'src', 'main', 'index.html')

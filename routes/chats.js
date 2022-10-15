@@ -5,15 +5,34 @@ const chatsRouter = express.Router();
 const logger = require('../handlers/logger/loggerHandler');
 
 
-// /rooms/get() - gets the user's email and friends, and sends back the chat rooms (with latest message?)
+// /meesages/initial() - gets the user's email and friends, and sends back the chat rooms (with 1 week of messagess to each room)
 // /messages/get(room,startDate) - gets the room and start date, sends back the messages a week back
 // /messages/new(messageSchema) - gets a message in the correct schema, saves to DB
+// consider making the initial room request pull the messages also
 //need to learn how they make it update live :) 
 
-chatsRouter.get('/rooms/get',(req,res) => {
-  const email = req.user.email;
-  const friends = req.user.friends;
-  // const rooms = 
+chatsRouter.get('/messages/initial', async (req, res) => {
+  const email = 'connectfour777@gmail.com'; //req.user.email
+  const friends = [{'email':'rbrbrbrb8@gmail.com'}]; //req.user.friends
+  const rooms = chatsHandler.generateRoomNames(email, friends);
+  const endDate = (new Date()).getTime();
+  const dayMilli = 1000 * 60 * 60 * 24 * 1;
+  const startDate = endDate - dayMilli;
+
+  Promise.all(rooms.map(room => chatsHandler.getRangeMessages(room, startDate, endDate))).then(chatsArr => {
+    const final = rooms.reduce((roomsObj,room,i) =>{
+      roomsObj[room] = chatsArr[i][0];
+      console.log(chatsArr[i][0]);
+      return roomsObj;  
+    },{}); //messages with relevant room;
+    //object.keys() for room names
+    //object.values() for messages
+    res.status(200).send(final);
+  })
+  .catch(err => {
+    res.status(500).send(err);
+  });
+
 })
 
 chatsRouter.post('/messages/new', async (req, res) => {

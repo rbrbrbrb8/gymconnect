@@ -6,7 +6,8 @@ const messageSchema = new Schema({
   content: {type:String,required:true},
   sender: {type:String,required:true},
   date: {type:Number,required:true},
-  time:{type:String,required:true}
+  time:{type:String,required:true},
+  timeSeconds:{type:Number,required:true}
 },{collection:"Messages"});
 
 
