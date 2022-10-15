@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const passport = require('passport');
 const session = require('express-session');
 const path = require('path');
@@ -9,12 +10,15 @@ const port = process.env.PORT || 3000;
 const logger = require('./handlers/logger/loggerHandler');
 const dbHandler = require('./handlers/db/dbHandler');
 const MongoStore = require('connect-mongo');
+const chatsRouter = require('./routes/chats');
 
 dbHandler.init();
 
 
 const app = express();
-app.use(express.json())
+app.use(express.json());
+app.use(cors());
+
 app.use(session({
   secret: 'siuuuuuuu',
   cookie: { maxAge: 1000 * 60 * 60 * 24 },
@@ -55,6 +59,8 @@ app.get('/login', (req, res) => {
   const pathToSend = path.resolve(__dirname, 'src', 'login', 'login.html')
   res.sendFile(pathToSend);
 })
+
+app.use('/chats',chatsRouter);
 
 app.use(isLoggedIn, function (req, res) {
   const pathToSend = path.resolve(__dirname, 'src', 'main', 'index.html')

@@ -9,4 +9,7 @@ const messageSchema = new Schema({
   time:{type:String,required:true}
 },{collection:"Messages"});
 
+
+//should we want to add group rooms in the future, we should create room collection with members and save its id each user's doc
+// we should also change the room id in the messages to the room id 
 module.exports = mongoose.model('Messages',messageSchema);

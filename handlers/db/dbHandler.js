@@ -2,6 +2,15 @@ const mongoose = require('mongoose');
 const logger = require('../logger/loggerHandler');
 const dbHandler = {};
 require('dotenv').config();
+const Pusher = require('pusher');
+
+const pusher = new Pusher({
+  appId: process.env.PUSHER_APP_ID,
+  key: process.env.PUSHER_KEY,
+  secret: process.env.PUSHER_SECRET,
+  cluster: "eu",
+  useTLS: true
+});
 
 // console.log(process.env)
 
@@ -11,6 +20,20 @@ dbHandler.init = () => {
   db.on('error', console.error.bind(console, 'connection error:'));
   db.once('open', async () => {
     logger.info('formed new connection to db');
+    //set up change stream to messages collection
+    const messageCollection = db.collection('Messages');
+    dbHandler.changeStream = messageCollection.watch();
+    dbHandler.changeStream.on('change',change => {
+      console.log(change);
+      if(change.operationType === 'insert'){
+        const messageDetails = change.fullDocument;
+        pusher.trigger('messages','inserted',{
+          room:messageDetails.room,
+          sender:messageDetails.sender,
+          content:messageDetails.content
+        })
+      }
+    })
   });
 }
 
@@ -32,4 +55,19 @@ dbHandler.findOneInCollection = (modelName,filter) => {
   return Model.findOne(filter);
 }
 
+dbHandler.findInCollection = (modelName,filter) => {
+  const Model = getModel(modelName);
+  return Model.find(filter);
+}
+
+dbHandler.insertToCollection = (modelName,doc) => {
+  const Model = getModel(modelName);
+  const docToSave = new Model(doc);
+  return docToSave.save();
+}
+
+dbHandler.aggregate  = (modelName,pipe) => {
+  const Model = getModel(modelName);
+  return Model.aggregate(pipe);
+}
 module.exports = dbHandler;
