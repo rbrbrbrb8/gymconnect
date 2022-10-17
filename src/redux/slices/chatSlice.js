@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  selectedPeopleIndex: false
+  selectedPeopleIndex: false,
+  messages:{}
 };
 
 const chatSlice = createSlice({

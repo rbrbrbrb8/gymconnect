@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
 function ChatMessage({ sender, content }) {
-
+  const me = JSON.parse(window.localStorage.getItem('userInfo')).email;
   return (
     <div className='message-margin-anchor'>
       <Paper elevation={1} className={'message ' + (sender === 'me' && 'message-me')}>

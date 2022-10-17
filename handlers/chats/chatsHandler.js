@@ -36,7 +36,8 @@ chatsHandler.getRangeMessages = (room, startDate, endDate) => {
           $push: {
             'content': '$content',
             'sender': '$sender', //add condition to determine 'me' or 'other'
-            'time': '$time'
+            'time': '$time',
+            'timeSeconds':'$timeSeconds'
           }
         }
       }
@@ -44,15 +45,22 @@ chatsHandler.getRangeMessages = (room, startDate, endDate) => {
     {
       $project: {
         'date': '$_id',
+        'toGroup':'0',
         'messages': '$messages',
-        'test': [[{$toString:{$toLong:'$_id'}}, '$messages']]
+        'test': [{$toString:{$toLong:'$_id'}}, '$messages']
+      }
+    },
+    {
+      $group:{
+        '_id':'$toGroup',
+        'test':{$push:'$test'}
       }
     },
     {
       $replaceRoot: {
         newRoot:{$arrayToObject:'$test'}
       }
-    }
+    },
     // { $unset: '_id' }
   ])
 }

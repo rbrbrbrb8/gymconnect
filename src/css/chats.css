@@ -64,3 +64,8 @@
 .message-margin-anchor{
   margin-bottom: 2px;
 }
+
+.person-preview p.MuiTypography-body2{
+  overflow:hidden;
+  text-overflow: ellipsis;
+}

@@ -16,13 +16,13 @@ chatsRouter.get('/messages/initial', async (req, res) => {
   const friends = [{'email':'rbrbrbrb8@gmail.com'}]; //req.user.friends
   const rooms = chatsHandler.generateRoomNames(email, friends);
   const endDate = (new Date()).getTime();
-  const dayMilli = 1000 * 60 * 60 * 24 * 1;
-  const startDate = endDate - dayMilli;
+  const weekMilli = 1000 * 60 * 60 * 24 * 7;
+  const startDate = endDate - weekMilli;
 
   Promise.all(rooms.map(room => chatsHandler.getRangeMessages(room, startDate, endDate))).then(chatsArr => {
     const final = rooms.reduce((roomsObj,room,i) =>{
       roomsObj[room] = chatsArr[i][0];
-      console.log(chatsArr[i][0]);
+      console.log(chatsArr[i]);
       return roomsObj;  
     },{}); //messages with relevant room;
     //object.keys() for room names

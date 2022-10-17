@@ -9,7 +9,7 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import { actions } from '../../../redux/slices/chatSlice';
 
-function PeopleListItem({ itemIndex }) {
+function PeopleListItem({ itemIndex,name,previewMsg }) {
   const selectedIndex = useSelector(state => state.chat.selectedPeopleIndex);
   const dispatch = useDispatch();
   const handleListItemClick = itemIndex => {
@@ -18,11 +18,12 @@ function PeopleListItem({ itemIndex }) {
   return (
     <ListItemButton alignItems='flex-start' selected={selectedIndex === itemIndex} onClick={(e) => handleListItemClick(itemIndex)}>
       <ListItemAvatar>
-        <Avatar alt='Roy Brezner' src='/images/berez.jpg' />
+        <Avatar alt={name}  />
       </ListItemAvatar>
       <ListItemText
-        primary='Roy Brezner'
-        secondary={'Siuuuuuu'}
+        primary={name}
+        secondary={previewMsg}
+        className='person-preview'
       />
     </ListItemButton>
   );
